@@ -1,9 +1,8 @@
 Title: Kresus: version 0.5.4
 Date: 2015-09-20 18:10
 Author: Benjamin Bouvier
-Category: kresus
 Lang: fr
-Tags: cozycloud
+Tags: kresus, cozycloud
 Slug: kresus-version-0-5-4
 
 Je viens de publier une nouvelle version de

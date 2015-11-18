@@ -1,7 +1,7 @@
 Title: Getting Things Done: The Good Parts
 Date: 2015-09-08 08:00
 Author: Benjamin Bouvier
-Category: lifehacking
+Tags: lifehacking
 Slug: getting-things-done-the-good-parts
 Lang: en
 

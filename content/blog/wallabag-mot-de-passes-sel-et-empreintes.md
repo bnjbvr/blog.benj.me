@@ -1,7 +1,7 @@
 Title: Wallabag, mot de passes, sel et empreintes
 Date: 2015-05-06 19:53
 Author: Benjamin Bouvier
-Category: opensource
+Tags: opensource
 Lang: fr
 Slug: wallabag-changer-mot-de-passe-perdu
 

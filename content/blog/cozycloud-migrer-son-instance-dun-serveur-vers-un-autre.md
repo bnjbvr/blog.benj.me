@@ -2,8 +2,7 @@ Title: CozyCloud : migrer son instance d'un serveur vers un autre
 Date: 2015-04-21 21:12
 Author: Benjamin Bouvier
 Lang: fr
-Category: opensource
-Tags: cozycloud
+Tags: cozycloud, kresus
 Slug: cozycloud-migrer-son-instance-dun-serveur-vers-un-autre
 
 Il arrive de temps en temps de devoir changer de serveur, et puisque le

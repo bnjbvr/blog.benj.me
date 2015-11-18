@@ -1,7 +1,7 @@
 Title: What I've Made On Year 2014
 Date: 2015-03-16 13:22
 Author: Benjamin Bouvier
-Category: opensource
+Tags: opensource, lifehacking
 Slug: what-ive-made-on-year-2014
 
 I've stumbled across [espadrine's blog

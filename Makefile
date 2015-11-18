@@ -12,10 +12,10 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=localhost
+SSH_HOST=benj.me
 SSH_PORT=22
-SSH_USER=root
-SSH_TARGET_DIR=/var/www
+SSH_USER=ben
+SSH_TARGET_DIR=/home/ben/www/blog
 
 S3_BUCKET=my_s3_bucket
 
@@ -24,9 +24,6 @@ CLOUDFILES_API_KEY=my_rackspace_api_key
 CLOUDFILES_CONTAINER=my_cloudfiles_container
 
 DROPBOX_DIR=~/Dropbox/Public/
-
-HOSTING_ORIGIN=server
-HOSTING_BRANCH=master
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -85,7 +82,6 @@ else
 	cd $(OUTPUTDIR) && $(PY) -m pelican.server 80 0.0.0.0
 endif
 
-
 devserver:
 ifdef PORT
 	$(BASEDIR)/develop_server.sh restart $(PORT)
@@ -103,23 +99,13 @@ publish:
 ssh_upload: publish
 	scp -P $(SSH_PORT) -r $(OUTPUTDIR)/* $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
 
+ssh: ssh_upload
+
+
 rsync_upload: publish
 	rsync -e "ssh -p $(SSH_PORT)" -P -rvzc --delete $(OUTPUTDIR)/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) --cvs-exclude
 
-dropbox_upload: publish
-	cp -r $(OUTPUTDIR)/* $(DROPBOX_DIR)
+rsync: rsync_upload
 
-ftp_upload: publish
-	lftp ftp://$(FTP_USER)@$(FTP_HOST) -e "mirror -R $(OUTPUTDIR) $(FTP_TARGET_DIR) ; quit"
 
-s3_upload: publish
-	s3cmd sync $(OUTPUTDIR)/ s3://$(S3_BUCKET) --acl-public --delete-removed --guess-mime-type
-
-cf_upload: publish
-	cd $(OUTPUTDIR) && swift -v -A https://auth.api.rackspacecloud.com/v1.0 -U $(CLOUDFILES_USERNAME) -K $(CLOUDFILES_API_KEY) upload -c $(CLOUDFILES_CONTAINER) .
-
-github: publish
-	ghp-import -m "Generate Pelican site" -b $(HOSTING_BRANCH) $(OUTPUTDIR)
-	git push $(HOSTING_ORIGIN) $(HOSTING_BRANCH)
-
-.PHONY: html help clean regenerate serve serve-global devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
+.PHONY: html help clean regenerate serve serve-global devserver publish ssh ssh_upload rsync rsync_upload

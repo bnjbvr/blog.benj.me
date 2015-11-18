@@ -2,7 +2,6 @@ Title: Des idées folles pour faciliter le développement sous Cozy
 Date: 2015-07-07 18:37
 Author: Benjamin Bouvier
 Lang: fr
-Category: opensource
 Tags: cozycloud
 Slug: des-idees-folles-pour-faciliter-le-developpement-sous-cozy
 
