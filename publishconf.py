@@ -16,6 +16,3 @@ DELETE_OUTPUT_DIRECTORY = True
 
 SITEURL = 'https://blog.benj.me'
 
-FEED_DOMAIN = SITEURL
-FEED_ALL_RSS = 'rss'
-
