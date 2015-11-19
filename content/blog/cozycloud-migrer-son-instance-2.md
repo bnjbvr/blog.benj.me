@@ -52,7 +52,7 @@ modifié vous-même.
 Si vous avez installé votre serveur avec le package Debian ou Ubuntu, il est
 possible d'utiliser l'outil `scp` pour effectuer cette tâche, en vous
 connectant depuis le nouveau serveur vers l'ancien. Si vous utilisez cette
-méthode, prenez soin à nommer la version sur le nouveau serveur
+méthode, prenez soin de nommer la version sur le nouveau serveur
 `cozy.couch.new`, c'est important pour la suite.
 
 #### L'ancien Cozy était installé avec Docker
@@ -62,7 +62,7 @@ la méthode *malpropre*, à savoir exposer la base de données sur le serveur we
 pendant un court instant et utiliser `wget` sur le nouveau cozy. Il est
 sûrement possible d'extraire le fichier depuis le Docker vers l'hôte, mais
 j'avoue ne pas avoir cherché ; si quelqu'un connaît une méthode, je suis
-preneur ! Pour ma méthode "malpropre", il faut modifier le fichier de
+preneur ! Pour ma méthode « malpropre », il faut modifier le fichier de
 configuration de nginx pour donner accès au fichier :
 
         # Copier la base vers /var/www
@@ -74,23 +74,23 @@ configuration de nginx pour donner accès au fichier :
 
 J'ai remplacé le bloc `location/ { proxy_set_header ...` par le suivant :
 
-            location / {
-                root /var/www;
-                try_files $uri $uri/ /index.html;
-            }
+        location / {
+            root /var/www;
+            try_files $uri $uri/ /index.html;
+        }
 
 Toujours depuis l'ancien serveur, bien penser à relancer nginx :
 
-            sudo service nginx restart
+        sudo service nginx restart
 
 Ensuite, depuis le nouveau serveur, sur lequel je suppose que vous avez
 déjà installé le paquet `cozy` et qu'il tourne correctement :
 
-            cd /var/lib/couchdb
-            # Stopper supervisor va arrêter tout cozy
-            sudo service supervisor stop
-            sudo service couchdb stop
-            sudo wget https://monanciencozy.tld/cozy.couch.new
+        cd /var/lib/couchdb
+        # Stopper supervisor va arrêter tout cozy
+        sudo service supervisor stop
+        sudo service couchdb stop
+        sudo wget https://monanciencozy.tld/cozy.couch.new
 
 Mettre en place la base dans le nouveau cozy {#mettre-en-place-base-nouveau-cozy}
 ====
@@ -123,11 +123,11 @@ base qui vient d'un autre cozy où des applications sont installées, le nouveau
 cozy va penser que certaines applications sont présentes sur le disque, alors
 qu'elles ne le sont pas. Il est nécessaire d'effectuer une petite réparation
 ici, au niveau de la pile logicielle cozy et des applications installées.
-Heureusement, l'équipe a pensé à ça et nous a founri une commande qui permet de
+Heureusement, l'équipe a pensé à ça et nous a fourni une commande qui permet de
 réinstaller les applications utilisateurs. C'est parti, depuis le nouveau
 serveur :
 
-        # Mettre à jour l'ensemble de la stack Cozy pour commencer
+        # Mettre à jour l'ensemble de la pile Cozy pour commencer
         sudo cozy-monitor update-all-cozy-stack
         # Réinstaller les applications manquantes
         sudo cozy-monitor reinstall-missing-app
@@ -157,5 +157,4 @@ rapidement et de mémoire. Si j'ai oublié quoi que ce soit, n'hésitez pas à m
 contacter sur [twitter](https://twitter.com/bnjbvr),
 [diaspora](https://framasphere.org/u/bnjbvr) ou sur irc (mon nick est
 `bnjbvr`). Si ça a marché et que vous avez apprécié, n'hésitez pas à me le dire
-également ;-)
-
+également. ;-)
