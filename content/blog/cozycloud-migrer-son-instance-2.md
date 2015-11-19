@@ -1,5 +1,5 @@
 Title: CozyCloud : migrer son instance 2, le retour
-Date: 2015-04-21 21:12
+Date: 2015-11-19 14:00
 Author: Benjamin Bouvier
 Lang: fr
 Tags: cozycloud, kresus
@@ -31,59 +31,83 @@ Si votre Cozy est hébergé par CozyCloud (sur
 l'export de la base de données CouchDB à l'équipe Cozy. Problème réglé.
 
 Si vous êtes auto-hébergé, il va falloir mettre les mains dans le cambouis :
-- d'abord, réduire la taille de la base de données, c'est-à-dire effectuer un
-  compactage de la base de données. Depuis votre serveur, effectuez les
-  commandes suivantes :
 
-        cozy-monitor compact
-        cozy-monitor compact-all-views
+D'abord, réduire la taille de la base de données, c'est-à-dire effectuer un
+compactage de la base de données. C'est parti, depuis l'ancien serveur :
 
-- ensuite, récupérer la base elle-même. Celle-ci est contenue dans le
-  répertoire `/var/lib/couchdb/` et porte le nom de `cozy.couch`, sauf si vous
-  l'avez modifié vous-même.
-    - Si vous avez installé votre serveur avec le package Debian ou Ubuntu, il
-      est possible d'utiliser l'outil `scp` pour effectuer cette tâche, en vous
-      connectant depuis le nouveau serveur vers l'ancien.
-    - Si comme moi vous avez préféré jouer avec le feu et utiliser Docker pour
-      installer votre cozy, il va falloir ruser un peu. Personnellement, j'ai
-      choisi la méthode *malpropre*, à savoir exposer la base de données sur le
-      serveur web pendant un court instant et utiliser `wget` sur le nouveau
-      cozy. Il est sûrement possible d'extraire le fichier depuis le Docker
-      vers l'hôte, mais j'avoue ne pas avoir cherché ; si quelqu'un connaît une
-      méthode, je suis preneur ! Pour ma méthode "malpropre", il faut modifier
-      le fichier de configuration de nginx pour donner accès au fichier :
+        # On éteint Cozy pour éviter l'apparition de nouvelles données
+        sudo service supervisor stop
+        # On fait une sauvegarde de la base, en cas de pépin
+        cd /var/lib/couchdb/
+        sudo cp cozy.couch cozy.couch.backup
+        # On compacte la base
+        sudo cozy-monitor compact
 
-            # Copier la base vers /var/www
-            sudo cp /var/lib/couchdb/cozy.couch /var/www
-            # Donner les droits en lecture à nginx
-            sudo chown www-data:www-data -R /var/www
-            # Editer le fichier de config avec le meilleur éditeur du monde
-            sudo vim /etc/nginx/sites-available/cozy.conf
+Ensuite, récupérer la base elle-même. Celle-ci est contenue dans le répertoire
+`/var/lib/couchdb/` et porte le nom de `cozy.couch`, sauf si vous l'avez
+modifié vous-même.
 
-      J'ai remplacé le bloc `location/ { proxy_set_header ...` par le suivant :
+#### L'ancien Cozy était installé par le package Debian
+
+Si vous avez installé votre serveur avec le package Debian ou Ubuntu, il est
+possible d'utiliser l'outil `scp` pour effectuer cette tâche, en vous
+connectant depuis le nouveau serveur vers l'ancien. Si vous utilisez cette
+méthode, prenez soin à nommer la version sur le nouveau serveur
+`cozy.couch.new`, c'est important pour la suite.
+
+#### L'ancien Cozy était installé avec Docker
+Si comme moi vous avez préféré jouer avec le feu et utiliser Docker pour
+installer votre cozy, il va falloir ruser un peu. Personnellement, j'ai choisi
+la méthode *malpropre*, à savoir exposer la base de données sur le serveur web
+pendant un court instant et utiliser `wget` sur le nouveau cozy. Il est
+sûrement possible d'extraire le fichier depuis le Docker vers l'hôte, mais
+j'avoue ne pas avoir cherché ; si quelqu'un connaît une méthode, je suis
+preneur ! Pour ma méthode "malpropre", il faut modifier le fichier de
+configuration de nginx pour donner accès au fichier :
+
+        # Copier la base vers /var/www
+        sudo cp /var/lib/couchdb/cozy.couch /var/www/cozy.couch.new
+        # Donner les droits en lecture à nginx
+        sudo chown www-data:www-data -R /var/www
+        # Editer le fichier de config de nginx avec le meilleur éditeur du monde
+        sudo vim /etc/nginx/sites-available/cozy.conf
+
+J'ai remplacé le bloc `location/ { proxy_set_header ...` par le suivant :
 
             location / {
                 root /var/www;
                 try_files $uri $uri/ /index.html;
             }
 
-      Ensuite, depuis le nouveau serveur, sur lequel je suppose que vous avez
-      déjà installé le paquet `cozy` et qu'il tourne correctement :
+Toujours depuis l'ancien serveur, bien penser à relancer nginx :
+
+            sudo service nginx restart
+
+Ensuite, depuis le nouveau serveur, sur lequel je suppose que vous avez
+déjà installé le paquet `cozy` et qu'il tourne correctement :
 
             cd /var/lib/couchdb
+            # Stopper supervisor va arrêter tout cozy
             sudo service supervisor stop
             sudo service couchdb stop
-            sudo rm -f cozy.couch
-            sudo wget https://monanciencozy.tld/cozy.couch
+            sudo wget https://monanciencozy.tld/cozy.couch.new
 
 Mettre en place la base dans le nouveau cozy {#mettre-en-place-base-nouveau-cozy}
 ====
 
 Je suppose que vous avez déjà récupéré la base d'une manière ou d'une autre, et
-que celle-ci est déjà présente dans `/var/lib/couchdb`
+que celle-ci est déjà présente dans `/var/lib/couchdb`, sous le nom
+`cozy.couch.new`. Depuis le nouveau serveur, effectuez les commandes suivantes :
 
             cd /var/lib/couchdb
+            # On arrête Cozy (via supervisor) et couchdb
+            sudo service supervisor stop
+            sudo service couchdb stop
+            # Backup de l'ancienne base
+            sudo mv cozy.couch cozy.couch.old
+            sudo mv cozy.couch.new cozy.couch
             sudo chown -R couchdb:couchdb ./cozy.couch
+            # On relance le tout
             sudo service couchdb start
             sudo service supervisor start
 

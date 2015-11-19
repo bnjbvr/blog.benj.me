@@ -14,5 +14,5 @@ RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
 
-SITEURL = 'https://blog.benj.me'
+SITEURL = 'https://blog2.benj.me'
 

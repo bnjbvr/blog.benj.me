@@ -12,7 +12,7 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=benj.me
+SSH_HOST=blog2.benj.me
 SSH_PORT=22
 SSH_USER=ben
 SSH_TARGET_DIR=/home/ben/www/blog
