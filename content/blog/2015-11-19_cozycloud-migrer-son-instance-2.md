@@ -2,7 +2,7 @@ Title: CozyCloud : migrer son instance 2, le retour
 Date: 2015-11-19 14:00
 Author: Benjamin Bouvier
 Lang: fr
-Tags: cozycloud, kresus
+Tags: cozycloud
 Slug: cozycloud-migrer-son-instance-2-le-retour
 
 Si vous vous rappelez bien, j'ai [déjà écrit un
