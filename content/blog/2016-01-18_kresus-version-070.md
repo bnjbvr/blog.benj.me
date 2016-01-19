@@ -33,12 +33,12 @@ Un grand merci à tous les contributeurs qui ont été hyperactifs ce mois-ci !
   à toute l'interface ! Notamment, l'interface est maintenant utilisable sur
   mobile. Merci @AwYiss!
 - [@nicofrand](https://github.com/nicofrand) a été prolifique :
-    - il y a désormais un bouton "fermer" et un bouton "vider et fermer" dans
+    - Il y a désormais un bouton "fermer" et un bouton "vider et fermer" dans
       la fenêtre de recherche des opérations, qui explicitent mieux les
       intentions.
-    - il est maintenant possible d'éditer les champs personnalisés de connexion
+    - Il est maintenant possible d'éditer les champs personnalisés de connexion
       aux banques (par ex. la phrase secrète de connexion, etc.).
-    - un compte peut désormais être sélectionné comme compte par défaut, dans
+    - Un compte peut désormais être sélectionné comme compte par défaut, dans
       les préférences (étoile à côté des comptes). C'est ce compte-là qui
       s'affichera en premier quand vous vous connecterez à Kresus.
     - Kresus a une belle favicon, pour les versions mobiles !
@@ -46,7 +46,7 @@ Un grand merci à tous les contributeurs qui ont été hyperactifs ce mois-ci !
       l'onglet "avancé" affiché lors de l'installation.
     - Il est désormais possible d'assigner une couleur à une catégorie. Cette
       couleur sera utilisée dans les graphiques en barre et en camembert pour
-      représenter la dite catégorie.
+      représenter ladite catégorie.
 - [@ZeHiro](https://github.com/ZeHiro) a également été très efficace :
     - Il est désormais possible de retirer un libellé personalisé d'une
       opération.
@@ -61,7 +61,7 @@ Un grand merci à tous les contributeurs qui ont été hyperactifs ce mois-ci !
       automatique des opérations, et donc à n'utiliser que si vous savez
       vraiment bien ce que vous faites.
     - Qualité du code : début de lint côté client.
-- [votre serviteur](https://github.com/bnjbvr):
+- [votre serviteur](https://github.com/bnjbvr) :
     - mise à jour du module bancaire HelloBank
     - fusion automatique des comptes doublons très probables
     - mise à jour automatique des modules weboob, une fois par jour
