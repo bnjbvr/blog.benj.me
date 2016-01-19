@@ -6,7 +6,7 @@ Tags: cozycloud
 Slug: cozycloud-migrer-son-instance-2-le-retour
 
 Si vous vous rappelez bien, j'ai [déjà écrit un
-article]({filename}./cozycloud-migrer-son-instance-dun-serveur-vers-un-autre.md)
+article]({filename}./2015-04-21_cozycloud-migrer-son-instance.md)
 pour expliquer comment migrer son instance [https://cozy.io](CozyCloud) d'un
 endroit vers un autre. Ces derniers jours, je me suis rendu compte que mon
 serveur personnel était sous-utilisé et qu'il me serait possible d'en prendre
@@ -136,7 +136,7 @@ J'ai eu plusieurs erreurs à ce moment-là, souvent liées à des applications q
 n'étaient plus trouvées sur github, ou des erreurs réseaux. En général,
 relancer la commande fonctionne, sinon j'ai purement et simplement désinstallé
 l'application en question. Par exemple, si l'application plantée était
-[Kresus]({filename}./kresus-version-060.md), j'ai simplement effectué
+[Kresus]({filename}./2015-11-16_kresus-version-060.md), j'ai simplement effectué
 
         sudo cozy-monitor uninstall kresus
 
