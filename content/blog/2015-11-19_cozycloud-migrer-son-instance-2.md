@@ -13,9 +13,14 @@ serveur personnel était sous-utilisé et qu'il me serait possible d'en prendre
 un plus léger et moins cher, d'où la nécessité d'une nouvelle migration d'un
 serveur à un autre.
 
+Edit (10 février 2016) : j'ai ajouté la copie des répertoires permanents à
+cette procédure, sans avoir pu tester. Vos retours sur cette partie sont les
+bienvenus !
+
 Les étapes sont les suivantes :
 
 - Récupérer la base de l'ancien Cozy.
+- Recopier le répertoire de données permanentes des apps.
 - La mettre en place dans le nouveau Cozy.
 - Réinstaller les applications.
 
@@ -91,6 +96,39 @@ déjà installé le paquet `cozy` et qu'il tourne correctement :
         sudo service supervisor stop
         sudo service couchdb stop
         sudo wget https://monanciencozy.tld/cozy.couch.new
+
+Recopier les données permanentes des applications
+===
+
+Cela a été rajouté depuis l'écriture initiale de ce blog post, il est donc
+probable que cela ne fonctionne pas, dans quel cas contactez-moi svp !
+
+Depuis des versions récentes de la plateforme, Cozy autorise les applications à
+avoir un répertoire de données permanentes, qui sont conservées même si
+l'application a été désinstallée. C'est très pratique pour porter facilement
+des applications qui utilisent des fichiers comme mémoire vers Cozy !
+
+Pour porter ce répertoire, voici la procédure à effectuer :
+
+- copier le répertoire sur la machine précédente et le mettre dans un zip, par
+  exemple:
+
+        # depuis la machine qui héberge l'ancien cozy
+        cd /usr/local/var/cozy
+        zip /tmp/usr-local-var-cozy.zip -r ./*
+
+- transférer le zip vers le nouveau serveur (avec votre méthode préférée : FTP,
+  Web, scp, etc.). Par exemple, avec `scp`:
+
+        # depuis la nouvelle machine
+        scp user@ancienne-machine:/tmp/usr-local-var-cozy.zip /tmp
+
+- remplacer le répertoire sur la nouvelle machine:
+
+        # depuis la nouvelle machine
+        mkdir -p /usr/local/var/cozy
+        cd /usr/local/var/cozy && zip backup.zip -r ./*
+        unzip /tmp/usr-local-var-cozy.zip
 
 Mettre en place la base dans le nouveau cozy {#mettre-en-place-base-nouveau-cozy}
 ====
