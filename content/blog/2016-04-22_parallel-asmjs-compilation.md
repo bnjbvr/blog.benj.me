@@ -1,20 +1,19 @@
-Title: Improving startup compilation times of asm.js and WebAssembly in Firefox
-Date: 2016-04-20 19:00
+Title: Making asm.js/WebAssembly compilation more parallel in Firefox
+Date: 2016-04-22 15:00
 Author: Benjamin Bouvier
 Tags: opensource, mozilla
-Slug: improving-startup-compilation-times-asmjs-wasm-firefox
-Status: draft
+Slug: making-asmjs-webassembly-compilation-more-parallel
 
 In December 2015, I've worked on reducing startup time of asm.js programs in
-Firefox, by making compilation more parallel. As our
+Firefox by making compilation more parallel. As our
 JavaScript engine, Spidermonkey, uses the same compilation pipeline for both
 asm.js and WebAssembly, this also benefitted WebAssembly compilation. Now is a
-good time for talking about what it meant, how it got achieved and what are the
-next ideas to make it even lower.
+good time to talk about what it meant, how it got achieved and what are the
+next ideas to make it even faster.
 
 # What does it mean to make a program "more parallel"?
 
-Parallelization consists in splitting a sequential program into smaller
+Parallelization consists of splitting a sequential program into smaller
 independent tasks, then having them run on different CPU. If your program
 is using `N` cores, it can be up to `N` times faster.
 
@@ -48,17 +47,17 @@ under Firefox.
 I recommend to read this [blog
 post](https://blog.mozilla.org/luke/2014/01/14/asm-js-aot-compilation-and-startup-performance/).
 It clearly explains the differences between JIT (Just In Time) and AOT (Ahead
-Of Time) compilation, and explicits the different parts of the engines involved
-in the compilation pipeline.
+Of Time) compilation, and elaborates on the different parts of the engines
+involved in the compilation pipeline.
 
 As a TL;DR, keep in mind that [asm.js](http://asmjs.org/) is a strictly
-validated, highly optimizable, typed, subset of JavaScript. Once
+validated, highly optimizable, typed subset of JavaScript. Once
 validated, it guarantees high performance and stability (no garbage collector
 involved!). That is ensured by
 mapping every single JavaScript instruction of this subset to a few CPU
-instructions, if not only a single instruction. Which means an asm.js program needs to
-get *compiled* to machine code, that is, translated from JavaScript to the
-language your CPU directly manipulates (like what GCC would do for a C++
+instructions, if not only a single instruction. This means an asm.js program
+needs to get *compiled* to machine code, that is, translated from JavaScript to
+the language your CPU directly manipulates (like what GCC would do for a C++
 program). If you haven't heard, the results are impressive and you can run
 [video](beta.unity3d.com/jonas/DT2/)
 [games](https://www.unrealengine.com/html5) directly in your browser, without
@@ -81,11 +80,12 @@ Before the work explained below, the pipeline for compiling a single function
   (low-level IR closer to the CPU memory representation: registers, stack,
   etc.). The one generated here is the MIR. All of this happens on the main
   thread.
-- once the entire IR graph is generated for the function, optimize the MIR graph
-  (i.e. apply a few optimization passes). After register allocation happens
-  (probably the most costly task of the pipeline), generate the LIR graph. This
-  can be done on supplementary helper threads, as the MIR optimization and LIR
-  generation for a given function doesn't depend on other ones.
+- once the entire IR graph is generated for the function, optimize the MIR
+  graph (i.e. apply a few optimization passes). Then, generate the LIR graph
+  before carrying out register allocation (probably the most costly task of the
+  pipeline). This can be done on supplementary helper threads, as the MIR
+  optimization and LIR generation for a given function doesn't depend on other
+  ones.
 - since functions can call between themselves within an asm.js module, they
   need references to each other. In assembly, a reference is merely an offset
   to somewhere else in memory. In this initial implementation, code generation
@@ -119,26 +119,27 @@ is translated to MIR in another thread.
 
 Now, instead of parsing and generating MIR in a single pass, we would now parse
 and generate wasm IR in one pass, and generate the MIR out of the wasm IR in
-another pass. Since wasm is very compact and cheap to generate, it is expected
-that compilation time won't suffer. This was a major refactoring, consisting
-in taking all the single instructions of asm.js, encoding them in a compact way
-and later decode these into the equivalent MIR nodes.
+another pass. The wasm IR is very compact and much cheaper to generate than a
+full MIR graph, because generating a MIR graph needs some algorithmic work,
+including the creation of Phi nodes (join values after any form of branching).
+As a result, it is expected that compilation time won't suffer.  This was a
+large refactoring: taking every single asm.js instructions, and encoding them
+in a compact way and later decode these into the equivalent MIR nodes.
 
 For the second part, could we generate code on other threads? One structure in
 the code base, the *MacroAssembler*, is used to generate all the code and it
 contains all necessary metadata about offsets. By adding more metadata there to
-abstract internal calls **\*\***, we could use simple functional concepts
-here:
+abstract internal calls **\*\***, we can describe the new scheme in terms of a
+classic functional `map`/`reduce`:
 
 - the wasm IR is sent to a thread, which will return a MacroAssembler. That
-  is a `map` operation, transforming an array of vector of IR into an array of
+  is a `map` operation, transforming an array of wasm IR into an array of
   MacroAssemblers.
-- When a thread is done compiling, we merge its MacroAssembler with the
-  module's MacroAssembler. Most of the merge consists in taking all the offset
-  metadata in the thread MacroAssembler, fix up each offset by offsetting (!)
-  them by the size of the module's MacroAssembler, and concatenate the two
-  generated code buffers. This is equivalent to a `reduce` operation, merging
-  each MacroAssembler within the module's one.
+- When a thread is done compiling, we merge its MacroAssembler into one big
+  MacroAssembler. Most of the merge consists in taking all the offset metadata
+  in the thread MacroAssembler, fixing up all the offsets, and concatenate the
+  two generated code buffers. This is equivalent to a `reduce` operation,
+  merging each MacroAssembler within the module's one.
 
 At the end of the compilation of the entire module, there is still some light
 work to be done: offsets of internal calls need to be translated to their
@@ -158,58 +159,63 @@ stable, from a function to the other.
 Benchmarking has been done on a Linux x64 machine with 8 cores clocked at 4.2
 Ghz.
 
-First, compilation times when compiling a few asm.js massive games:
+First, compilation times of a few asm.js massive games:
 
 * [DeadTrigger2](http://beta.unity3d.com/jonas/DT2/)
 * [AngryBots](http://beta.unity3d.com/jonas/AngryBots/)
 * [Platformer game](https://github.com/lukewagner/PlatformerGamePacked)
 * [Tappy Chicken](https://www.unrealengine.com/html5)
 
+The X scale is the compilation time in seconds, so lower is better. Each value
+point is the best one of three runs. For the new scheme, the corresponding
+relative speedup (in percentage) has been added:
+
 ![Compilation times of various
 benchmarks]({filename}/images/parallelization-times.png)
 
 For all games, compilation is much faster with the new parallelization scheme.
-To get a better hand at the effect of the new scheme, let's consider
-relative speedup, in percentage:
 
-![Speedup on various benchmarks]({filename}/images/parallelization-speedup.png)
-
-Now, let's go a bit deeper. The Linux CLI tool `perf` has a `stat` function
+Now, let's go a bit deeper. The Linux CLI tool `perf` has a `stat` command
 that gives you an average of the number of utilized CPUs during the program
-execution.  This is a great measure of threading efficiency: the more a CPU is
+execution. This is a great measure of threading efficiency: the more a CPU is
 utilized, the more it is not idle, waiting for other results to come, and thus
 useful. For a constant task execution time, the more utilized CPUs, the more
 likely the program will execute quickly.
 
+The X scale is the number of utilized CPUs, according to the `perf stat`
+command, so higher is better. Again, each value point is the best one of three
+runs.
+
 ![CPU utilized on DeadTrigger2]({filename}/images/parallelization-cpu-utilized.png)
 
 With the older scheme, the number of utilized CPUs quickly rises up from 1 to 4
-cores, then more slowly from 5 cores and beyond. But with the newer scheme, we
-get much more CPU usage even after 6 cores! Then it slows down a bit, although
-it is still more significant than the slow rise of the older scheme. So it is
-likely that with even more threads, we could have even better speedups than the
-one mentioned beforehand.
+cores, then more slowly from 5 cores and beyond. Intuitively, this means that
+with 8 cores, we almost reached the theoritical limit of the portion of the
+program that can be made parallel (not considering the overhead introduced by
+parallelization or altering the scheme).
+
+But with the newer scheme, we get much more CPU usage even after 6 cores! Then
+it slows down a bit, although it is still more significant than the slow rise
+of the older scheme. So it is likely that with even more threads, we could have
+even better speedups than the one mentioned beforehand. In fact, we have moved
+the theoritical limit mentioned above a bit further: we have expanded the
+portion of the program that can be made parallel. Or to keep on using the
+initial car/road metaphor, we've shortened the constant speed portion of the
+road to the benefit of the unlimited speed portion of the road, resulting in a
+shorter trip overall.
 
 # Future steps
 
 Despite these improvements, compilation time can still be a pain, especially on
-mobile. This is mostly due to register allocation, which processing time can
-quickly raise if some functions are very big. Because of this, we decided to
-implement a [baseline
-compiler](https://bugzilla.mozilla.org/show_bug.cgi?id=1232205) for
-WebAssembly. That is, a compiler that won't optimize as much as the whole
-infrastructure (thus it will generate a program that is slower to run), but
-will compile quickly. The idea is that a WebAssembly module would be compiled
-quickly first, so that the user has someting before their eyes. Then a costly,
-full compilation would happen in the background, and when it is done, the
-better optimized code would replace the baseline compiled code. Work is
-ongoing there.
-
-After this, parsing might be the next bottleneck. As we receive and validate
-the bits of a Module from the network, we could start compiling functions.
-Fortunately, WebAssembly has been thought with this goal in mind and will
-easily allow this optimization.
+mobile. This is mostly due to the fact that we're running a whole multi-million
+line codebase through the backend of a compiler to generate optimized code.
+Following this work, the next bottleneck during the compilation process is
+parsing, which matters for asm.js in particular, which source is plain text.
+Decoding WebAssembly is an order of magnitude faster though, and it can be made
+even faster. Moreover, we have even more load-time optimizations coming down
+the pipeline!
 
 In the meanwhile, we keep on improving the WebAssembly backend. Keep track of
 our progress on [bug
 1188259](https://bugzilla.mozilla.org/show_bug.cgi?id=1188259)!
+
