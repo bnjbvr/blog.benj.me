@@ -130,6 +130,7 @@ Pour porter ce répertoire, voici la procédure à effectuer :
         cd /usr/local/var/cozy && zip backup.zip -r ./*
         unzip /tmp/usr-local-var-cozy.zip
 
+
 Mettre en place la base dans le nouveau cozy {#mettre-en-place-base-nouveau-cozy}
 ====
 
@@ -165,6 +166,9 @@ Heureusement, l'équipe a pensé à ça et nous a fourni une commande qui permet
 réinstaller les applications utilisateurs. C'est parti, depuis le nouveau
 serveur :
 
+        # Mettre à jour cozy-monitor (utile pour les installation à partir 
+        # d'une image préinstallée comme pour le RPI2
+        sudo npm install -g cozy-monitor
         # Mettre à jour l'ensemble de la pile Cozy pour commencer
         sudo cozy-monitor update-all-cozy-stack
         # Réinstaller les applications manquantes
@@ -181,6 +185,17 @@ l'application en question. Par exemple, si l'application plantée était
 Ce n'est pas un problème, car la désinstallation d'une application n'implique
 pas la désinstallation des données. Ensuite, il est possible de réinstaller les
 applications depuis l'interface du site web.
+
+Pour terminer, il faut mettre à jour les permissions des dossiers contenant les données 
+persistantes : 
+
+       # On va dans le dossier 
+       cd /usr/local/var/cozy
+       # On change les permieesions pour chaque dossier. Note, penser à changer le nom de 
+       # l'application à chaque fois
+       sudo chown -R cozy-nomApp nomApp
+       
+
 
 Conclusion
 ===
