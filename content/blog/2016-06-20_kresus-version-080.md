@@ -102,7 +102,10 @@ Un grand merci aux 7 contributeurs de cette nouvelle version, pour un total de
     - Suppression de faux positifs dans la détection automatique des doublons
       (deux opérations avec la même date, le même montant et le même libellé).
     - Si votre mot de passe expire, Kresus vous enverra désormais un mail une
-      et une seule fois pour vous le signaler.
+      et une seule fois pour vous le signaler, et n'importera plus d'opérations
+      automatiquement jusqu'à la mise à jour du mot de passe (le même comportement
+      est prévu si le mot de passe devient erroné, s'il n'est pas mis à jour dans
+      Kresus)
 - De manière notable, ZeHiro et moi-même avons contribué ensemble à des
   fonctionnalités majeures :
     - Grâce à une implémentation de *l'infinite scrolling* dans la
