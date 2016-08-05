@@ -1,5 +1,5 @@
 Title: Kresus: version 0.8.0
-Date: 2016-06-21 11:00
+Date: 2016-08-05 19:30
 Author: Benjamin Bouvier
 Lang: fr
 Tags: kresus, cozycloud
@@ -29,12 +29,24 @@ personnellement effectué une installation globale. Je **recommande d'installer
 la version 1.1 ou supérieure** de Weboob, pour être certain que les modules des
 sites ne soient pas dépassés.
 
+Si vous utilisez l'application
+[cozy_management](https://github.com/cozy/python_cozy_management), il existe
+maintenant une commande permettant d'effectuer l'installation globale de Weboob
+telle qu'elle est nécessaire pour que Kresus fonctionne sur votre machine :
+
+```
+cozy_management install_weboob
+```
+
+Un grand merci à [nicofrand](https://github.com/nicofrand) pour cette
+fonctionnalité !
+
 Auparavant, Weboob, le système qui se connecte à votre banque pour récupérer la
 liste des comptes et opérations, était installé par Kresus et cela nécessitait
 des dépendences externes. Il a été décidé que Weboob devait désormais être
 installé au préalable par l'administrateur système : Kresus n'essaiera plus de
 l'installer. Cela simplifie beaucoup de choses, notamment en facilitant
-l'installation.
+la gestion des dépendences nécessaires lors de l'installation.
 
 ### La version courte
 
@@ -49,7 +61,7 @@ Un changement visible et notable : la liste des opérations est désormais
 [beaucoup plus fluide](https://twitter.com/bnjbvr/status/730309653943492612)
 lors du scroll, même si vous avez des tonnes d'opérations.
 
-### En cas de problèmes de montants
+### En cas de problèmes de balances
 
 Si vous rencontrez des problèmes de synchronisation entre Kresus et votre
 banque, par exemple si Kresus affiche des soldes de comptes qui ne
@@ -59,14 +71,14 @@ de les fusionner à la main.
 
 Si malgré la détection de doublons, vous avez encore des problèmes de montant,
 laissez un message sur le [fil associé](https://forum.cozy.io/t/app-kresus/224)
-sur le forum de Cozy ! J'aimerais expérimenter des méthodes plus agressives de
+du forum de Cozy ! J'aimerais expérimenter des méthodes plus agressives de
 détection automatique de doublons, et cela nécessite de savoir quelles sont les
 situations qui posent fréquemment problème.
 
 ### Les contributions en détail
 
 Un grand merci aux 7 contributeurs de cette nouvelle version, pour un total de
-96 commits !
+108 commits !
 
 - [@AwYiss](https://github.com/AwYiss), qui avait déjà grandement amélioré
   l'interface utilisateur, a frappé de nouveau, en intégrant les préférences au
@@ -92,6 +104,8 @@ Un grand merci aux 7 contributeurs de cette nouvelle version, pour un total de
       nécessite une réflexion et des tests approfondis ainsi qu'une
       implémentation côté interface)
 - [@ZeHiro](https://github.com/ZeHiro):
+    - Amélioration de la visualisation de la liste des opérations sur interface
+      mobile (en lecture seule pour le moment).
     - Amélioration sensible des traductions : les notifications et textes des
       emails sont désormais traduits en français ou en anglais, selon la langue
       choisie dans votre Cozy !
@@ -105,7 +119,13 @@ Un grand merci aux 7 contributeurs de cette nouvelle version, pour un total de
       et une seule fois pour vous le signaler, et n'importera plus d'opérations
       automatiquement jusqu'à la mise à jour du mot de passe (le même comportement
       est prévu si le mot de passe devient erroné, s'il n'est pas mis à jour dans
-      Kresus)
+      Kresus).
+    - Ajout de la possibilité de supprimer une opération manuellement.
+      N'utilisez cette fonctionnalité qu'en dernier recours et seulement si la
+      détection de doublons n'a pas marché !
+    - Fix spécifique à un [problème
+      spécifique](https://framagit.org/bnjbvr/kresus/issues/401) de plateforme
+      sous raspberry pi.
 - De manière notable, ZeHiro et moi-même avons contribué ensemble à des
   fonctionnalités majeures :
     - Grâce à une implémentation de *l'infinite scrolling* dans la
@@ -130,13 +150,15 @@ Un grand merci aux 7 contributeurs de cette nouvelle version, pour un total de
     - les graphiques des opérations en valeurs négatives pointent désormais
       vers le haut et non plus vers le bas.
 
-Si vous voulez voir encore plus de détails, les 96 (!) commits sont présentés [par
-là](https://github.com/bnjbvr/kresus/compare/19312b5c081404eda3d1d23bea410cfb04b103da...6fb93ab3a45ccbb3afcd8ccc62b737fe63c4d395).
-
 ### Le mot de la fin
+
+La prochaine version est déjà presque prête et comprend une réécriture presque
+complète du client avec une autre technologie (`redux`). Après cette
+réécriture, on devrait plus facilement pouvoir ajouter de nouveau des grosses
+fonctionnalités !
 
 Comme d'habitude, si vous avez des remarques ou suggestions,
 n'hésitez-pas à me le faire savoir, par
-[twitter](https://twitter.com/bnjbvr/) ou sur le
+[twitter](https://twitter.com/bnjbvr/), sur [diaspora](https://framasphere.org/people/315a5640ead10132c4cc2a0000053625) ou sur le
 [forum](https://forum.cozy.io/t/app-kresus/224) de cozy !
 
