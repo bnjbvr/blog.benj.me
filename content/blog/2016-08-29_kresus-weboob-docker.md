@@ -6,7 +6,7 @@ Tags: kresus
 Slug: kresus-weboob-docker
 
 Si vous suivez ce blog, vous avez dû entendre parler de
-[Kresus](https://github.com/bnjbvr/kresus/), le gestionnaire de finances
+[Kresus](https://framagit.org/bnjbvr/kresus/), le gestionnaire de finances
 personnelles open-source sur lequel je travaille. Pour rappel, cette
 application, basée sur [Weboob](http://weboob.org/), est disponible dans
 [CozyCloud](https://cozy.io/en/) et vous permet de vous connecter à votre
