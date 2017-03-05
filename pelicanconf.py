@@ -50,5 +50,9 @@ TAG_FEED_RSS = u'tag/%s.rss'
 
 DEFAULT_PAGINATION = 10
 
+JINJA_ENVIRONMENT = {'extensions': []}
+
+PLUGINS = ['minchin.pelican.plugins.post_stats']
+
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True

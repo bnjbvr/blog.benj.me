@@ -98,6 +98,6 @@ rsync: publish
 	rsync -e "ssh -p $(SSH_PORT)" -P -rvzc --delete $(OUTPUTDIR)/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) --cvs-exclude
 
 install:
-	pip install pelican Markdown
+	pip install --user pelican Markdown minchin.pelican.plugins.post_stats
 
 .PHONY: html help clean regenerate serve serve-global devserver publish ssh rsync
