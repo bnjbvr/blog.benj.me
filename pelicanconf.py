@@ -34,7 +34,7 @@ SOCIAL = (('github', 'https://github.com/bnjbvr'),
          )
 
 # Piwik
-PIWIK_URL = 'piwik.benj.me'
+PIWIK_URL = '1984.delire.party'
 PIWIK_SITE_ID = 1
 
 # Feed generation is usually not desired when developing
