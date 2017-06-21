@@ -9,7 +9,7 @@ L'équipe de Kresus vient de publier une nouvelle version de
 [Kresus](https://framagit.org/bnjbvr/kresus/), un gestionnaire libre de
 finances personnelles sur lequel je travaille. Pour rappel, cette application
 web, basée sur [Weboob](http://weboob.org/) et disponible [de manière
-autonome](https://www.karolak.fr/blog/2016/03/18/kresus-un-gestionnaire-web-de-finances-personnelles-libre)
+autonome](https://www.karolak.fr/blog/2016/03/18/kresus-un-gestionnaire-web-de-finances-personnelles/)
 ou dans [CozyCloud](https://cozy.io/), vous permet de vous connecter à votre
 compte bancaire, de récupérer vos opérations et de les classifier pour savoir
 comment vous dépensez votre argent afin de mieux maîtriser vos finances.

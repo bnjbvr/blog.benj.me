@@ -22,7 +22,7 @@ exemple, l'envoi d'alertes par emails), soit elles n'ont pas d'équivalents (par
 exemple, les notifications dans le dashboard cozy). Mais tout le reste est là,
 et c'est une manière simple et rapide d'utiliser Kresus. Un contributeur,
 [Nicolas](https://twitter.com/_nikaro), a même écrit un [excellent
-tutoriel](https://www.karolak.fr/blog/2016/03/18/kresus-un-gestionnaire-web-de-finances-personnelles-libre)
+tutoriel](https://www.karolak.fr/blog/2016/03/18/kresus-un-gestionnaire-web-de-finances-personnelles/)
 pour ce mode d'installation ! Merci à lui.
 
 ## Des précautions

@@ -10,7 +10,7 @@ L'équipe de Kresus vient de publier une nouvelle version de
 personnelles open-source sur lequel je travaille. Pour rappel, cette
 application, basée sur [Weboob](http://weboob.org/), est disponible dans
 [CozyCloud](https://cozy.io/en/) ou
-[en dehors](https://blog.karolak.fr/2016/03/18/kresus-un-gestionnaire-web-de-finances-personnelles-libre/)
+[en dehors](https://www.karolak.fr/blog/2016/03/18/kresus-un-gestionnaire-web-de-finances-personnelles/)
 et vous permet de vous connecter à votre compte bancaire, récupérer vos
 opérations et les classifier pour savoir où votre argent passe.
 
