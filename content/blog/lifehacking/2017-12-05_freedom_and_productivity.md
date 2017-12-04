@@ -47,7 +47,7 @@ In my opinion, this excess can be harmful. In fact, if we'd try to draw a
 parallel with politics, I'd say these look like the premises for a fascist
 regime (note I am not a historian, so this might be incomplete according to my
 high-school memories). Indeed, some of it is there: providing the same answer
-to all public issues (thus rebranding them, which can be facilitated by
+to all public issues (thus re-branding them, which can be facilitated by
 designating scapegoats), forcing one into adopting behavior that might not be
 suited for them, having a clear distinction between us (who have access to The
 Solution) versus them (who don't/can't have access to it), setting up a cult of
@@ -57,7 +57,7 @@ Why would we act like this? I am no sociologist, and there are probably many
 reasons, but we can explore some basic ideas: maybe *some* people feel
 powerless when facing the complexity of a world where everything is intertwined
 in so many ways and evolving at a very high pace. Having a unique, predefined,
-seemingly theoritically proven answer provides them with some sense of order
+seemingly theoretically proven answer provides them with some sense of order
 and intellectual easiness. On one side, whole ranges of issues then get easily
 resolved and put aside, which gives head space for other matters; on the other
 side, it means that there are no conflicts in thinking, less freedom of choice,
@@ -82,7 +82,7 @@ of others might not be suited for your particular situation, and it could show
 useless.
 
 This also raises another point I wonder about: is the seek of productivity only
-a topic for the priviledged? If you consider something like [Maslow's hierarchy
+a topic for the privileged? If you consider something like [Maslow's hierarchy
 of needs](https://en.wikipedia.org/wiki/Maslow's_hierarchy_of_needs),
 productivity would probably belong to the highest level (self-actualization),
 since it assumes all other issues in your life have been addressed first. If we
@@ -175,7 +175,7 @@ what you do. I think other people call this autonomy or integrity; I hope
 you get the idea.
 
 In particular, I don't want others to preconceive life choices for myself. Even
-if they have theoritized the topic and proven with objective metrics that it
+if they have theorized the topic and proven with objective metrics that it
 worked for them. So here is my meta-productivity advice: to **try different
 methods, to make your own solutions out of them, to choose what works according
 to the context**. Even if I need to spend a lot of time on thinking things
@@ -188,8 +188,8 @@ possible ways to do one thing, according to my current context: my state of
 mind, geographical location, needs, expectations, levels of energy, unexpected
 events popping up throughout the day, political context, really anything. As
 long as everything I do is conscious, works for me and makes me feel more
-fulfilled, I'll do the tradeoff of not having perfect control and a predefined
-answer to everything.
+fulfilled, I'll choose the trade-off of not having perfect control and a
+predefined answer to everything.
 
 What some call the (self) review process matters here: one has to make sure
 they're doing their own Right Thing, in terms of process and goals, at periodic
