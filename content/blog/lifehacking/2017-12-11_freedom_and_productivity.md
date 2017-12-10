@@ -1,11 +1,11 @@
-Title: Freedom and productivity: an open mind manifesto
-Date: 2017-12-05 10:00
+Title: Freedom-enabling, not mindless productivity
+Date: 2017-12-11 09:00
 Author: Benjamin Bouvier
 Tags: lifehacking
-Slug: freedom-and-productivity
+Slug: freedom-enabling-productivity
 Lang: en
 
-![Freedom and productivity]({filename}/images/keep-exploring.jpg)
+![Freedom-enabling, not mindless productivity]({filename}/images/keep-exploring.jpg)
 
 There are many self-development articles out there on blogs, detailing all the
 techniques and methods that one can use to work better, be happier, become more
