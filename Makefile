@@ -15,7 +15,7 @@ FTP_TARGET_DIR=/
 SSH_HOST=blog.benj.me
 SSH_PORT=22
 SSH_USER=ben
-SSH_TARGET_DIR=/home/ben/www/blog
+SSH_TARGET_DIR=/home/ben/www/benj.me/blog
 
 S3_BUCKET=my_s3_bucket
 
