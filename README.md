@@ -1,6 +1,6 @@
 # sources of my blog
 
-These are the sources to my personal blog, published on [https://blog.benj.me].
+These are the sources to my personal blog, published on [https://blog.benj.me](https://blog.benj.me).
 
 ## instructions
 
