@@ -78,7 +78,7 @@ par seconde, qui retracerait l'historique plus complet de nos comptes. Mais
 parfois, ce dernier se trompe parce qu'il ne dispose pas d'assez
 d'informations, ou parce que les banques changent la manière dont sont
 présentées les opérations au cours du temps (et ça arrive beaucoup plus souvent
-qu'on ne le croit !). Naîvement, on pourrait penser que si deux transactions
+qu'on ne le croit !). Naïvement, on pourrait penser que si deux transactions
 récupérées lors de différentes synchronisations ont la même date, le même
 libellé et le même montant, alors ce sont des doublons. Mais les banques se
 permettent de modifier au cours du temps l'une ou plusieurs de ces composantes,
