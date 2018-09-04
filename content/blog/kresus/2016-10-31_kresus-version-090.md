@@ -2,7 +2,7 @@ Title: Kresus: version 0.9.0
 Date: 2016-10-31 18:30
 Author: Benjamin Bouvier
 Lang: fr
-Tags: kresus, cozycloud
+Tags: kresus
 Slug: kresus-version-0-9-0
 
 L'équipe de Kresus vient de publier une nouvelle version de
