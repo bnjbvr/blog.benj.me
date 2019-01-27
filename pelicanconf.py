@@ -41,9 +41,9 @@ SOCIAL = (
      ('linkedin', 'https://www.linkedin.com/in/bnjbvr'),
 )
 
-# Piwik
-PIWIK_URL = '1984.delire.party'
-PIWIK_SITE_ID = 1
+# Fathom
+FATHOM_URL = '1984.b.delire.party'
+FATHOM_SITE_ID = 'CSQLE'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
