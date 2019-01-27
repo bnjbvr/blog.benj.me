@@ -21,7 +21,7 @@ Comment changer son mot de passe Wallabag, à la dure {#commentchangersonmotdepa
 ##### aka, comment perdre son mot de passe Wallabag en premier lieu {#akacommentperdresonmotdepassewallabagenpremierlieu}
 
 ![Wallabag, mot de passes, sel et
-empreintes]({filename}/images/kangourou.jpeg)
+empreintes]({static}/images/kangourou.jpeg)
 
 J'utilise [Wallabag](http://wallabag.org/), un service de liste de
 lecture libre et décentralisé, donc un concurrent de

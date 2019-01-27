@@ -6,7 +6,7 @@ Slug: getting-things-done-the-good-parts
 Lang: en
 
 ![Getting Things Done: The Good
-Parts]({filename}/images/typewriter-801921_1280.jpg)
+Parts]({static}/images/typewriter-801921_1280.jpg)
 
 I've finished the [Getting Things Done](http://gettingthingsdone.com/)
 book a few weeks ago and wanted to write up a bit about it, as a summary

@@ -62,7 +62,7 @@ m'y prendre.
 
 ## CozyCloud et son gestionnaire de finances personnelles
 
-![Capture de cozypfm]({filename}/images/cozypfm.png)
+![Capture de cozypfm]({static}/images/cozypfm.png)
 
 Un peu plus tard, je découvre CozyCloud, et notamment l'application
 [cozy-pfm](https://github.com/seeker89/cozy-pfm), développée par un prestaire.
@@ -120,7 +120,7 @@ contribution chez Mozilla pour tâcher d'être chaleureux, remercier ces
 inconnu.e.s qui m'offrent des retours, voire des patches, trop content d'avoir
 des utilisateur.ice.s.
 
-![Capture de Kresus en aout 2018]({filename}/images/2018-08-kresus.png)
+![Capture de Kresus en aout 2018]({static}/images/2018-08-kresus.png)
 
 Aujourd'hui, quatre ans plus tard, il y a suffisamment de contributeur.i.ces
 externes pour que mes deux mains ne suffisent plus à les compter. Il y a une

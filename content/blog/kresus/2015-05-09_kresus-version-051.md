@@ -13,7 +13,7 @@ application est disponible uniquement dans [CozyCloud](https://cozy.io)
 bancaire, récupérer vos opérations et les classifier pour savoir où
 votre argent passe.
 
-![Graphiques]({filename}/images/kresus-051.png)
+![Graphiques]({static}/images/kresus-051.png)
 
 Parmi les nouveautés :
 

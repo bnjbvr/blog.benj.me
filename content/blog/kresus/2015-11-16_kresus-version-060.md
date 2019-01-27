@@ -28,7 +28,7 @@ opérations et les classifier pour savoir où votre argent passe.
     importées durant la période. Plus à venir dans les prochaines
     versions.
 
-![]({filename}/images/kresus-060.png)
+![Capture de Kresus 0.6.0]({static}/images/kresus-060.png)
 
 #### Tous les changements de cette version {#tousleschangementsdecetteversion}
 

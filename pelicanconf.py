@@ -46,7 +46,7 @@ AUTHOR_FEED_RSS = None
 
 FEED_DOMAIN = SITEURL
 FEED_ALL_RSS = u'rss'
-TAG_FEED_RSS = u'tag/%s.rss'
+TAG_FEED_RSS = u'tag/{slug}.rss'
 
 DEFAULT_PAGINATION = 10
 

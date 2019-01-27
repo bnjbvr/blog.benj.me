@@ -171,7 +171,7 @@ point is the best one of three runs. For the new scheme, the corresponding
 relative speedup (in percentage) has been added:
 
 ![Compilation times of various
-benchmarks]({filename}/images/parallelization-times.png)
+benchmarks]({static}/images/parallelization-times.png)
 
 For all games, compilation is much faster with the new parallelization scheme.
 
@@ -186,7 +186,7 @@ The X scale is the number of utilized CPUs, according to the `perf stat`
 command, so higher is better. Again, each value point is the best one of three
 runs.
 
-![CPU utilized on DeadTrigger2]({filename}/images/parallelization-cpu-utilized.png)
+![CPU utilized on DeadTrigger2]({static}/images/parallelization-cpu-utilized.png)
 
 With the older scheme, the number of utilized CPUs quickly rises up from 1 to 4
 cores, then more slowly from 5 cores and beyond. Intuitively, this means that

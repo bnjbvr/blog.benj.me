@@ -5,7 +5,7 @@ Tags: lifehacking
 Slug: freedom-enabling-productivity
 Lang: en
 
-![Freedom-enabling, not mindless productivity]({filename}/images/keep-exploring.jpg)
+![Freedom-enabling, not mindless productivity]({static}/images/keep-exploring.jpg)
 
 There are many self-development articles out there on blogs, detailing all the
 techniques and methods that one can use to work better, be happier, become more

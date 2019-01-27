@@ -11,7 +11,7 @@ drive to my computer, I had the surprise to see a black screen showing up just
 after booting, and nothing else. Here are some notes taken during the
 installation of Linux on this machine.
 
-![Twitter fame]({filename}/images/installing-linux-twitter.png)
+![Twitter fame]({static}/images/installing-linux-twitter.png)
 
 ## Graphics not working
 
