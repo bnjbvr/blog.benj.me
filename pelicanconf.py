@@ -28,10 +28,18 @@ SITELOGO=u"/images/logo.jpeg"
 COPYRIGHT_YEAR=u"2015"
 MAIN_MENU=True
 
-LINKS = ( )
-SOCIAL = (('github', 'https://github.com/bnjbvr'),
-         ('twitter', 'https://twitter.com/bnjbvr'),
-         )
+LINKS = (
+    ('about me', 'https://benj.me'),
+    ("slides", 'https://bnjbvr.github.io/slides'),
+)
+
+SOCIAL = (
+     ('github', 'https://github.com/bnjbvr'),
+     ('gitlab', 'https://framagit.org/bnjbvr'),
+     ('twitter', 'https://twitter.com/bnjbvr'),
+     ('rss', 'https://blog.benj.me/rss'),
+     ('linkedin', 'https://www.linkedin.com/in/bnjbvr'),
+)
 
 # Piwik
 PIWIK_URL = '1984.delire.party'
