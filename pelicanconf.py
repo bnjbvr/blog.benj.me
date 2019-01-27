@@ -54,5 +54,7 @@ JINJA_ENVIRONMENT = {'extensions': []}
 
 PLUGINS = ['minchin.pelican.plugins.post_stats']
 
+ISSO_BASE_URL = 'https://saywhat.benj.me'
+
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
