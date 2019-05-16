@@ -99,6 +99,8 @@ rsync: publish
 	rsync -e "ssh" -P -rvzc --delete $(OUTPUTDIR)/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) --cvs-exclude
 
 install:
+	git submodule init
+	git submodule update
 	$(PIP) install --user pelican Markdown minchin.pelican.plugins.post_stats
 
 .PHONY: html help clean regenerate serve serve-global devserver publish ssh rsync
