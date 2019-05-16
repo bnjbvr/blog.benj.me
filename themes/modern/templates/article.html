@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<meta name="author" content="{{ article.author.name }}" />
+<meta name="description" content="{{ article.summary|striptags }}" />
+<meta name="keywords" content="{{ article.tags|join(', ') }}">
+{% include "partial/og_article.html" %}
+{% endblock %}
+
+{% block title %} &ndash; {{ article.title|striptags }}{% endblock %}
+
+{% block content %}
+<article class="single">
+  <header>
+    <h1 id="{{ article.slug }}">{{ article.title }}</h1>
+    <p>Posted on {{ article.locale_date }} in
+      {% if article.tags %}
+          {% for tag in article.tags %}
+              <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+          {% endfor %}
+      {% else %}
+        <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+      {% endif %}
+
+      {% if 'minchin.pelican.plugins.post_stats' in PLUGINS %}
+        &#8226; {{ article.stats['read_mins'] }} min read
+      {% endif %}
+    </p>
+  </header>
+
+  <div class="content">
+    {{ article.content }}
+  </div>
+
+  {% if article.related_posts %}
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+    {% for related_post in article.related_posts %}
+      <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% include "partial/isso.html" %}
+</article>
+{% endblock %}

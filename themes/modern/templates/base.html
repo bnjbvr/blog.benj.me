@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/style.css">
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/fonts/inter.css">
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/font-awesome.min.css">
+
+  {% if FEED_ALL_ATOM %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom">
+  {% endif %}
+
+  {% if FEED_ALL_RSS %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS">
+  {% endif %}
+
+  {% if FAVICON %}
+    <link rel="shortcut icon" href="{{ FAVICON }}" type="image/x-icon">
+    <link rel="icon" href="{{ FAVICON }}" type="image/x-icon">
+  {% endif %}
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="{{ ROBOTS }}" />
+
+  {% block meta %}
+    <meta name="author" content="{{ AUTHOR }}" />
+    <meta name="description" content="{{ SITEDESCRIPTION }}" />
+    {% include "partial/og.html" %}
+  {% endblock %}
+
+  <title>{{ SITENAME }}{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+  <header class="main-header">
+    <h1>
+      <a href="{{ SITEURL }}">
+        <img src="{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
+        <br/>
+        {{ SITETITLE }}
+      </a>
+    </h1>
+
+    {% if SOCIAL %}
+    <ul>
+      {% for name, link in SOCIAL %}
+        <li>
+          <a class="sc-{{ name }}" href="{{ link }}" target="_blank">
+              <i class="fa fa-{{ name }}" title="{{ name }}"></i>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </header>
+
+  {% if pages or LINKS %}
+  <nav>
+    <ul>
+      {% if MAIN_MENU %}
+          <li><a href="{{ SITEURL }}">Home</a></li>
+
+          {% for title, link in MENUITEMS %}
+          <li><a href="{{ link }}">{{ title }}</a></li>
+          {% endfor %}
+
+          {% if FEED_ALL_ATOM %}
+          <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">Atom</a></li>
+          {% endif %}
+
+          {% if FEED_ALL_RSS %}
+          <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">RSS <i class="fa fa-rss" title="rss feed"></i></a></li>
+          {% endif %}
+      {% endif %}
+
+      {% if not PAGES_SORT_ATTRIBUTE -%}
+          {% set PAGES_SORT_ATTRIBUTE = 'title' %}
+      {%- endif %}
+
+      {% for page in pages|sort(attribute=PAGES_SORT_ATTRIBUTE) %}
+          <li><a href="{{ SITEURL }}/{{ page.url }}{% if not DISABLE_URL_HASH %}#{{ page.slug }}{% endif %}">{{ page.title }}</a></li>
+      {% endfor %}
+      {% for name, link in LINKS %}
+          <li><a href="{{ link }}" target="_blank">{{ name }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+
+  <main>
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <p>&copy; {{ AUTHOR }} {{ COPYRIGHT_YEAR }} —
+        Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> —
+        Fonts: <a href="http://velvetyne.fr/fonts/bluu/">Bluu Next</a>,
+            <a href="https://rsms.me/inter/">Inter</a>.
+        </p>
+    </footer>
+  </main>
+
+  {% if PIWIK_URL and PIWIK_SITE_ID %}
+    {% include "partial/piwik.html" %}
+  {% endif %}
+
+  {% if FATHOM_URL and FATHOM_SITE_ID %}
+    {% include "partial/fathom.html" %}
+  {% endif %}
+
+  {% include "partial/jsonld.html" %}
+
+  {% block additional_js %}{% endblock %}
+</body>
+</html>

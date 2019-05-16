@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Benjamin Bouvier'
-SITENAME = u'24 hours a day'
+SITENAME = u"Benjamin Bouvier's blog"
 SITEURL = ''
 
 PATH = 'content'
@@ -14,30 +14,28 @@ ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_LANG_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 ARTICLE_LANG_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 
-THEME = 'themes/Flex'
+THEME = 'themes/modern'
+#THEME = 'themes/Flex'
 
 TIMEZONE = 'Europe/Paris'
-
 DEFAULT_LANG = u'fr'
 
 # Theme specific
-SITETITLE=u"24 hours a day"
-SITESUBTITLE=u"Benjamin Bouvier's blog"
+SITETITLE=u"Benjamin Bouvier"
 SITELOGO=u"/images/logo.jpeg"
 
 COPYRIGHT_YEAR=u"2015"
 MAIN_MENU=True
 
 LINKS = (
-    ('about me', 'https://benj.me'),
-    ("slides", 'https://bnjbvr.github.io/slides'),
+    ('About', 'https://benj.me'),
+    ("Slides", 'https://bnjbvr.github.io/slides'),
 )
 
 SOCIAL = (
      ('github', 'https://github.com/bnjbvr'),
      ('gitlab', 'https://framagit.org/bnjbvr'),
      ('twitter', 'https://twitter.com/bnjbvr'),
-     ('rss', 'https://blog.benj.me/rss'),
      ('linkedin', 'https://www.linkedin.com/in/bnjbvr'),
 )
 
@@ -56,7 +54,7 @@ FEED_DOMAIN = SITEURL
 FEED_ALL_RSS = u'rss'
 TAG_FEED_RSS = u'tag/{slug}.rss'
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = False
 
 JINJA_ENVIRONMENT = {'extensions': []}
 

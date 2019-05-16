@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} &ndash; Tag {{tag}}{% endblock %}
+
+{% block content %}
+<h2>#{{ tag }}
+      {% if FEED_ALL_RSS %}
+      <a href="{{ FEED_DOMAIN }}/tag/{{ tag }}.rss"><i class="fa fa-rss" title="rss feed"></i></a>
+      {% endif %}
+</h2>
+
+{% for article in articles_page.object_list %}
+    <div class="index-item">
+      <p>
+        {{article.date|strftime('%Y/%m/%d')}}
+      </p>
+      <h3><a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a></h3>
+    </div>
+{% endfor %}
+
+{% endblock %}
+{% set summarise = True %}

@@ -1,0 +1,223 @@
+/* Bluu Next, by Jean-Baptiste Morizot */
+/* http://velvetyne.fr/authors/jean-baptiste-morizot/ */
+@font-face {
+    font-family: 'bluu';
+    src: url('fonts/bluunext-bold-webfont.woff2') format('woff2'),
+         url('fonts/bluunext-bold-webfont.woff') format('woff'),
+         url('fonts/bluunext-bold.ttf') format('truetype'),
+         url('fonts/bluunext-bold-webfont.svg#bluu_nextbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bluu';
+    src: url('fonts/bluunext-bolditalic-webfont.woff2') format('woff2'),
+         url('fonts/bluunext-bolditalic-webfont.woff') format('woff'),
+         url('fonts/bluunext-bolditalic.ttf') format('truetype'),
+         url('fonts/bluunext-bolditalic-webfont.svg#bluu_nextbold_italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* All pages */
+html, body {
+    width: 100%;
+    max-width: 1000px;
+    max-width: 80ch;
+    margin: auto;
+}
+
+body {
+    font-size: 22px;
+    line-height: 1.51;
+    font-weight: 300;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+* {
+    text-decoration: none;
+}
+
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+a, a:visited {
+    color: #9d0505;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+      font-family: 'Inter var', sans-serif;
+  }
+}
+
+h1, h2, h3 {
+    font-family: "bluu", "Verdana", serif;
+}
+
+h1 a, h1 a:visited {
+    color: black;
+}
+
+/* Navigation */
+
+nav {
+    border-top: 1px solid #6c6c6c;
+    padding-top: 0.5rem;
+}
+
+nav ul {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    max-width: 80%;
+    margin: auto;
+}
+
+/* Header on all the pages */
+
+.main-header {
+    margin-top: 1rem;
+    text-align: center;
+}
+.main-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.main-header img {
+    height: 200px;
+    border-radius: 100%;
+    margin-bottom: 1rem;
+}
+
+.main-header ul {
+    margin-bottom: 0.5rem;
+}
+.main-header ul, nav ul {
+    list-style-type: none;
+}
+
+.main-header li {
+    display: inline;
+    margin: 5px;
+}
+.main-header li a {
+    font-size: 1.6rem;
+    padding: 4px;
+}
+
+main {
+    margin-top: 3rem;
+}
+
+/* Index page */
+
+.index-tag {
+    margin-bottom: 0.5rem;
+}
+.index-tag a, .index-tag a:visited {
+    color: black;
+}
+
+i.fa.fa-rss {
+    color: #f09b4e;
+}
+
+.index-item {
+    display: flex;
+}
+.index-item h3, .index-item p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.index-item p {
+    color: rgba(0, 0, 0, 0.7);
+    flex: 1;
+}
+.index-item h3 {
+    flex: 5;
+}
+
+/* Article page */
+article h1 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+article h2, article h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+article header {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+article header h1, article header h2, article header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+article header h1 {
+    margin-bottom: 0.5rem;
+}
+article header h1 + p {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.9em;
+}
+
+article p {
+    margin-top: 0;
+}
+article img {
+    max-width: 100%;
+}
+article ul {
+    padding-left: 20px;
+    margin-bottom: 0.5rem;
+}
+article pre {
+    font-size: 0.8em;
+    overflow: auto;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 1rem;
+    border-top: 1px solid #6c6c6c;
+}
+
+footer p {
+    display: inline-block;
+}
+
+/* Media queries */
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    nav ul {
+        max-width: 100%;
+    }
+
+    .index-item {
+        margin-bottom: 1rem;
+    }
+    .index-item p {
+        display: none;
+    }
+
+    footer > * {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

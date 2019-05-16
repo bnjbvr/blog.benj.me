@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Hi! I'm Benjamin, welcome to my blog! I write about free-software, be
+it related to my work or side-projects, and sometimes about other random
+topics. Feel free to <a href="mailto:blog@benj.me">get in touch</a>!</p>
+
+<h2 class="index-tag">Latest blog posts</h2>
+{% for article in articles_page.object_list[:5] %}
+    <div class="index-item">
+      <p>
+        {{article.date|strftime('%Y/%m/%d')}}
+      </p>
+      <h3><a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a></h3>
+    </div>
+{% endfor %}
+
+{% for tag, articles in tags|sort %}
+<h2 class="index-tag">
+      <a href="{{ SITEURL }}/{{ tag.url }}">#{{tag}}</a>
+      {% if FEED_ALL_RSS %}
+      <a href="{{ FEED_DOMAIN }}/tag/{{ tag }}.rss"><i class="fa fa-rss" title="rss feed"></i></a>
+      {% endif %}
+</h2>
+    {% for article in articles %}
+    <div class="index-item">
+      <p>
+        {{article.date|strftime('%Y/%m/%d')}}
+      </p>
+      <h3><a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a></h3>
+    </div>
+    {% endfor %}
+{% endfor %}
+
+{% include "partial/pagination.html" %}
+
+{% endblock %}
