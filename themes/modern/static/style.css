@@ -187,6 +187,11 @@ article pre {
     overflow: auto;
 }
 
+article a {
+    padding: 0.159rem 0.159rem;
+    background-color: #efefef;
+}
+
 /* Footer */
 
 footer {
