@@ -28,7 +28,6 @@ MAIN_MENU=True
 
 LINKS = (
     ('Resume', 'https://benj.me/resume'),
-    ('Slides', 'https://bnjbvr.github.io/slides'),
 )
 
 SOCIAL = (
