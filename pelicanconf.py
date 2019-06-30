@@ -15,7 +15,6 @@ ARTICLE_LANG_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 ARTICLE_LANG_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 
 THEME = 'themes/modern'
-#THEME = 'themes/Flex'
 
 TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = u'fr'
