@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Benjamin Bouvier'
-SITENAME = u"Benjamin Bouvier's blog"
+SITENAME = u"Benjamin Bouvier's world"
 SITEURL = ''
 
 PATH = 'content'
@@ -23,12 +23,12 @@ DEFAULT_LANG = u'fr'
 SITETITLE=u"Benjamin Bouvier"
 SITELOGO=u"/images/logo.jpeg"
 
-COPYRIGHT_YEAR=u"2015"
+COPYRIGHT_YEAR=u"2019"
 MAIN_MENU=True
 
 LINKS = (
-    ('About', 'https://benj.me'),
-    ("Slides", 'https://bnjbvr.github.io/slides'),
+    ('Resume', 'https://benj.me/resume'),
+    ('Slides', 'https://bnjbvr.github.io/slides'),
 )
 
 SOCIAL = (
@@ -36,6 +36,8 @@ SOCIAL = (
      ('gitlab', 'https://framagit.org/bnjbvr'),
      ('twitter', 'https://twitter.com/bnjbvr'),
      ('linkedin', 'https://www.linkedin.com/in/bnjbvr'),
+     ('youtube', 'https://www.youtube.com/channel/UCqBNTOCHBfSzieU1wvnXsmQ/videos'),
+     ('soundcloud', 'https://soundcloud.com/bnjbvr'),
 )
 
 # Fathom
