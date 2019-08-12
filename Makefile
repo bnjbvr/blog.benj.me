@@ -13,8 +13,8 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=perso
-SSH_PORT=22
+SSH_HOST=delire
+SSH_PORT?=22
 SSH_USER=ben
 SSH_TARGET_DIR=/home/ben/www/html/blog
 
